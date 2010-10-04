@@ -8,6 +8,7 @@ class AddEditions < ActiveRecord::Migration
       t.float "price"
     end
     # Test 3
+    # Test 2
     # Test
   end
 
