@@ -9,19 +9,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101004104153) do
+ActiveRecord::Schema.define(:version => 20101011111000) do
 
   create_table "composers", :force => true do |t|
     t.string "first_name"
     t.string "last_name"
   end
 
+  create_table "customers", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "editions", :force => true do |t|
-    t.integer "work_id",                   :null => false
-    t.string  "description", :limit => 30
-    t.string  "publisher",   :limit => 60
+    t.integer "work_id",                    :null => false
+    t.string  "description",  :limit => 30
     t.integer "year"
     t.float   "price"
+    t.integer "publisher_id"
+  end
+
+  create_table "instruments", :force => true do |t|
+    t.string   "name"
+    t.string   "family"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "instruments_works", :id => false, :force => true do |t|
+    t.integer "instrument_id"
+    t.integer "work_id"
+  end
+
+  create_table "publishers", :force => true do |t|
+    t.string   "name"
+    t.string   "city"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "works", :force => true do |t|
