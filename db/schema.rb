@@ -56,8 +56,9 @@ ActiveRecord::Schema.define(:version => 20101011152332) do
   end
 
   create_table "orders", :force => true do |t|
+    t.integer  "edition_id"
     t.integer  "customer_id"
-    t.integer  "status"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
