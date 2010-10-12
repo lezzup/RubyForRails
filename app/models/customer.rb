@@ -1,8 +1,8 @@
 class Customer < ActiveRecord::Base
- has_many :orders, :dependent => true, :order => "created_at ASC"
+ has_many :orders, :dependent => :nullify, :order => "created_at ASC"
 
   def open_orders
-    orders.find(:all, :conditions=>"status => 'open'")
+    orders.find(:all, :conditions=>{:status => "open"})
   end
 
   def editions_on_order
@@ -14,7 +14,39 @@ class Customer < ActiveRecord::Base
   end
 
   def works_on_order
-    edition_history.map{|edition| edition.works}.flatten.uniq
+    editions_on_order.map {|edition| edition.works }.flatten.uniq
+  end
+
+  def work_history
+    edition_history.map {|edition| edition.works }.flatten.uniq
+  end
+
+   def rank(list)
+    list.uniq.sort_by do |a|
+      list.select {|b| a == b }.size
+    end.reverse
+  end
+
+  def composer_rankings
+    rank(edition_history.map {|ed| ed.composers }.flatten)
+  end
+
+  def instrument_rankings
+    rank(work_history.map {|work| work.instruments }.flatten)
+  end
+
+  def copies_of (edition)
+    open_orders.select { |order| order.edition==edition }.size
+  end
+
+  def balance
+    editions_on_order.inject(0) {|acc,edition| acc += edition.price }
+  end
+
+  def check_out
+    orders.each do |order|
+      order.update_attributes(:status => "paid")
+    end
   end
 
   
