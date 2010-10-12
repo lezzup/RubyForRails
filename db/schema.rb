@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101011152332) do
+ActiveRecord::Schema.define(:version => 20101012152540) do
 
   create_table "composers", :force => true do |t|
     t.string  "first_name"
@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(:version => 20101011152332) do
     t.string  "middle_name"
     t.integer "birth_year"
     t.integer "death_year"
-    t.integer "country"
+    t.string  "country"
   end
 
   create_table "customers", :force => true do |t|
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20101011152332) do
     t.string  "title"
     t.string  "kee"
     t.string  "opus"
+    t.integer "year"
   end
 
 end
