@@ -1,0 +1,19 @@
+<p>Available editions of
+ <%= @work.title %> by
+ <%= "#{@work.composer.first_name} #{@work.composer.last_name}" %></p>
+
+<table>
+  <tr>
+    <th>Edition</th>
+    <th>Publisher</th>
+  </tr>
+  <% @work.editions.each do |ed| %>
+  <tr>
+    <td><%= link_to ed.description,
+               :controller => "edition",
+               :action     => "show",
+               :id         => ed.id %></td>
+    <td><%= ed.publisher.name %></td>
+  <tr>
+  <% end %>
+</table>
