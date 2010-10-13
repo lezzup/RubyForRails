@@ -1,10 +1,39 @@
-<p>Click on a composer's name to see all of that composer's works.</p>
-<ul>
-  <% @composers.each do |composer| %>
-  <li><%= link_to "#{composer.first_name} #{composer.last_name}",
-                  :controller => "composer",
-                  :action     => "show",
-                  :id         => composer.id %>
-  </li>
-  <% end %>
-</ul>
+<% if @c %>
+  <h3>Welcome, <%= @c.first_name %>.</h3>
+<% end %>
+<h2 class="info">Browse works by...</h2>
+
+<table>
+  <tr>
+    <th>...Period</th>
+    <th>...Composer</th>
+    <th>...Instrument</th>
+  </tr>
+  <tr>
+    <td>
+      <%= render :partial => "period_list" %>
+    </td>
+    <td>
+      <%= render :partial => "composer/list" %>
+    </td>
+    <td>
+      <%= render :partial => "instrument/list" %>
+    </td>
+  </tr>
+</table>
+
+<% if @c %>
+  <%= render :partial => "favorites" %>
+<% else %>
+  <h2 class="info">Log in or create an account</h2>
+  <table border="1">
+    <tr>
+      <th>Log in to your account</th>
+      <th>Sign up for an account</th>
+    </tr>
+    <tr>
+      <td><%= render :partial => "customer/login" %></td>
+      <td><%= render :partial => "customer/signup" %></td>
+    </tr>
+  </table>
+<% end %>

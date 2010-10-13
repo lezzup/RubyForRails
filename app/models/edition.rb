@@ -9,6 +9,12 @@ class Edition < ActiveRecord::Base
   def composers
      works.map {|work| work.composer }.uniq
    end
+   
+   def nice_title
+       (title || works[0].nice_title) + 
+       " (#{publisher.name}, #{year})"
+  end
+   
 
   #class methods
    def Edition.of_works(works)

@@ -3,11 +3,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title><%= @page_title %></title>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/base.css"/>
 </head>
 <body>
+<table>
+  <tr>
+    <td><%= link_to "Home",
+                 :controller => "main",
+                 :action     => "welcome" %></td>
+    <% if @c %>
+    <td><%= link_to "View cart",
+                 :controller => "customer",
+                 :action     => "view_cart" %></td>
+    <td><%= link_to "Log out",
+                 :controller => "customer",
+                 :action     => "logout" %></td>
+    <% end %>
+  </tr>
+</table>
 <h1 class="banner">The R4R Music Store</h1>
 <%= @content_for_layout %>
 <hr/>
-<p>Copyright &copy; 2006, R4RMusic</p>
+<p>Copyright &copy; 2010, <%= link_to "R4R Music",
+                                   :controller => "main",
+                                   :action     => "welcome" %></p>
 </body>
 </html>

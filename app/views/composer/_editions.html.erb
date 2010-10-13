@@ -1,0 +1,6 @@
+<ul>
+  <% @composer.editions.map do |edition| %>
+   <li><%= link_to_edition_title(edition) %>
+   (<%= edition.publisher.name %>, <%= edition.year %>)</li>
+  <% end %>
+</ul>

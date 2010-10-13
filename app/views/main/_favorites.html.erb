@@ -1,0 +1,15 @@
+  <h2 class="info">Your favorites!</h2>
+
+  <% fav_composers = @c.favorites :composer,
+                       :count => 3 %>
+  <% fav_instruments = @c.favorites :instrument,
+                         :count => 3 %>
+
+  <ul>
+  <% fav_composers.each do |composer| %>
+    <li><%= link_to_composer(composer) %></li>
+  <% end %>
+  <% fav_instruments.each do |instrument| %>
+    <li><%= link_to_instrument(instrument) %></li>
+  <% end %>
+  </ul>

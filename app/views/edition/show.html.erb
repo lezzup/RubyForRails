@@ -1,17 +1,3 @@
-<% @page_title = "#{@edition.work.title} (#{@edition.description})" %>
-<p>Details of <%= @edition.work.title %>
-(<%= @edition.description %>),
-by
-<%= "#{@edition.work.composer.first_name} #{@edition.work.composer.last_name}" %></p>
-<table>
-  <tr>
-    <th>Publisher</th>
-    <th>Year</th>
-    <th>Price</th>
-  </tr>
-  <tr>
-    <td><%= @edition.publisher.name %></td>
-    <td><%= @edition.year %></td>
-    <td>$<%= @edition.price %></td>
-  </tr>
-</table>
+<% @page_title = @edition.nice_title %>
+<h2 class="info"><%= @page_title %></h2>
+<%= render :partial => "details" %>

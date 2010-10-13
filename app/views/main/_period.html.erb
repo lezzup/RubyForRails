@@ -1,0 +1,21 @@
+  <table border="1">
+    <tr>
+      <th>Title (Publisher, Year)</th>
+      <th>Composer(s)</th>
+    </tr>
+    <tr>
+
+    <% @editions.each do |edition| %>
+        <tr>
+          <td><%= link_to edition.nice_title,
+                       :controller => "edition",
+                       :action     => "show",
+                       :id         => edition.id %></td>
+          <td>
+             <% edition.composers.each do |composer| %>
+               <%= link_to_composer(composer) %>
+             <% end %></td>
+        </tr>
+        <% end %>
+        </tr>
+      </table>

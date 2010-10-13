@@ -40,7 +40,7 @@ class Customer < ActiveRecord::Base
   end
 
   def balance
-    editions_on_order.inject(0) {|acc,edition| acc += edition.price }
+   open_orders.map{|o| o.edition}.inject(0) {|acc,edition| acc += edition.price }
   end
 
   def check_out
@@ -48,6 +48,13 @@ class Customer < ActiveRecord::Base
       order.update_attributes(:status => "paid")
     end
   end
+  
+  def favorites(thing, options)
+     count=options[:count]
+     method_name="#{thing}_rankings"
+     rankings=self.send(method_name)
+     return rankings[0,count].compact
+   end
 
   
 end

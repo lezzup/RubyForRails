@@ -1,0 +1,5 @@
+<ul>
+<% @instrument.works.each do |work| %>
+  <li><%= work.composer.whole_name %>: <%= link_to_work(work) %></li>
+<% end %>
+</ul>

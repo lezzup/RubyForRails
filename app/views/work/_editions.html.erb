@@ -1,0 +1,10 @@
+<ul>
+  <% @work.editions.each do |ed| %>
+  <li>
+    <%= link_to_edition(ed) %>
+    <%= ed.description%>
+  </li>
+<% end %>
+</ul>
+</table>
+

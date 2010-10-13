@@ -1,0 +1,18 @@
+<ul>
+  <li>Edition: <%= @edition.description %></li>
+  <li>Publisher: <%= @edition.publisher.name %></li>
+  <li>Year: <%= @edition.year %></li>
+  <li>Price: <%= two_dec(@edition.price) %></li>
+<% if @c %>
+   <li><%= link_to "Add to cart",
+              :controller => "customer",
+              :action     => "add_to_cart",
+              :id         => @edition.id %></li>
+<% end %> 
+</ul>
+<h3>Contents:</h3>
+<ul>
+<% @edition.works.each do |work| %>
+  <li><%= link_to_work(work) %> (<%= link_to_composer(work.composer) %>)</li>
+<% end %>
+</ul>

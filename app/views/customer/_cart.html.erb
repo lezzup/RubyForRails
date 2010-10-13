@@ -1,0 +1,31 @@
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Composer</th>
+    <th>Publisher</th>
+    <th>Price</th>
+    <th>Copies</th>
+    <th>Subtotal</th>
+  </tr>
+
+<% @c.editions_on_order.each do |edition| %>
+<% count = @c.copies_of(edition) %>
+  <tr>
+    <td><%= link_to_edition_title(edition) %></td>
+    <td>
+    <% edition.composers.each do |composer| %>
+       <%= link_to_composer(composer) %>
+    <% end %></td>
+    <td><%= edition.publisher.name %></td>
+    <td class="price"><%= two_dec(edition.price) %>
+    <td class="count"><%= count %></td>
+    <td class="price"><%= two_dec(edition.price * count) %></td>
+  </tr>
+<% end %>
+  <tr><td colspan="5">TOTAL</td>
+      <td class="price"><%= two_dec(@c.balance) %></td>
+  </tr>
+</table>
+<p><%= link_to("Complete purchases",
+             :controller => "customer",
+             :action     => "check_out") %></p>

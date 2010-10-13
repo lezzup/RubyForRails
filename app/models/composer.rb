@@ -9,6 +9,10 @@ class Composer < ActiveRecord::Base
     editions.map{|edition| edition.publisher}.uniq
   end
   
+  def whole_name
+      "#{first_name} #{middle_name} #{last_name}"
+  end
+  
   #class methods
   def Composer.sales_rankings
      r = Hash.new(0)

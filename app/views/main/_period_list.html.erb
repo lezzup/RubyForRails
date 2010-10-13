@@ -1,0 +1,8 @@
+      <ul>
+        <% @periods.each do |period| %>
+        <li><%= link_to period,
+                        :controller => "main",
+                        :action     => "show_period",
+                        :id         => period %>
+        <% end %>
+      </ul>
